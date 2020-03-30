@@ -6,7 +6,7 @@ read vmname
 sleep 3
 virsh list --all
 sleep 5
-mkdir /vms-storage/$vmname && cd /vms-storage/$vmname && /usr/bin/virt-builder ubuntu-18.04  --install 'git,ssh,openssh-server,wget,curl,vim' --firstboot-command 'dpkg-reconfigure openssh-server' --run-command 'useradd -m -p "" jbarrionuevo -s /bin/bash ; chage -d 0 jbarrionuevo' --run-command  'usermod -aG sudo jbarrionuevo' --run-command "echo 'export LC_ALL="en_US.UTF-8"' >> ~/.bashrc" --firstboot-command 'dhclient' --root-password password:admin --ssh-inject jbarrionuevo:file:/root/.ssh/id_rsa.pub --format qcow2 --size 40G --hostname $vmname   --arch x86_64 
+mkdir /vms-storage/$vmname && cd /vms-storage/$vmname && /usr/bin/virt-builder ubuntu-18.04  --install 'git,ssh,openssh-server,wget,curl,vim' --firstboot-command 'dpkg-reconfigure openssh-server' --run-command 'useradd -m -p "" username -s /bin/bash ; chage -d 0 username' --run-command  'usermod -aG sudo username' --run-command "echo 'export LC_ALL="en_US.UTF-8"' >> ~/.bashrc" --firstboot-command 'dhclient' --root-password password:YOURPASSWORD --ssh-inject username:file:/root/.ssh/id_rsa.pub --format qcow2 --size 40G --hostname $vmname   --arch x86_64 
 sleep 200
 echo -e "\e[34m Check if disk is created\e[0m"
 if [ -a ubuntu-18.04.qcow2 ]; then 
